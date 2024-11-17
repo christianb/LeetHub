@@ -23,10 +23,11 @@ class Solution {
 
     private fun recursiveLevelOrder(root: TreeNode?, level: Int = 0, result: ArrayList<ArrayList<Int>>) {
         if (root == null) return
-
-        val listAtLevel = result.elementAtOrElse(level, { ArrayList<Int>() }).apply { add(root.`val`) }
-        if (result.size > level) result.set(level, listAtLevel)
-        else result.add(listAtLevel)
+        
+        // start the level
+        if (result.size == level) result.add(ArrayList<Int>())
+        
+        result[level].add(root.`val`)
 
         recursiveLevelOrder(root.left, level + 1, result)
         recursiveLevelOrder(root.right, level + 1, result)
