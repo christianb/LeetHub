@@ -37,16 +37,15 @@ class Solution {
         val output = IntArray(nums.size)
 
         var prefix = 1
-        output[0] = 1
-        for (i in 0 until nums.size - 1) {
-            prefix = prefix * nums[i]
-            output[i+1] = prefix
+        for (i in 0 until nums.size) {
+            output[i] = prefix
+            prefix *= nums[i]
         }
 
         var postfix = 1
         for (i in nums.size -1 downTo 0) {
-            output[i] = postfix * output[i]
-            postfix = postfix * nums[i]
+            output[i] *= postfix
+            postfix *= nums[i]
         }
 
         return output
